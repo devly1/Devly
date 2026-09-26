@@ -1,0 +1,275 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * DEVLY design system — editorial, clear, and human.
+ * Deep ocean blue, cool white, and clear cobalt carry the brand.
+ * All colors use oklch. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  --background: oklch(0.225 0.065 252);
+  --foreground: oklch(0.95 0.015 235);
+
+  --surface: oklch(0.265 0.07 252);
+  --surface-2: oklch(0.315 0.075 250);
+
+  --card: oklch(0.285 0.068 252);
+  --card-foreground: oklch(0.95 0.015 235);
+  --popover: oklch(0.285 0.068 252);
+  --popover-foreground: oklch(0.95 0.015 235);
+
+  --brand: oklch(0.68 0.12 235);
+  --brand-deep: oklch(0.4 0.14 258);
+
+  --primary: oklch(0.45 0.15 252);
+  --primary-foreground: oklch(0.97 0.01 235);
+
+  --secondary: oklch(0.315 0.075 250);
+  --secondary-foreground: oklch(0.95 0.015 235);
+
+  --muted: oklch(0.295 0.07 252);
+  --muted-foreground: oklch(0.76 0.03 240);
+
+  --accent: oklch(0.78 0.09 220);
+  --accent-foreground: oklch(0.19 0.05 255);
+
+  --destructive: oklch(0.62 0.21 25);
+  --destructive-foreground: oklch(0.98 0.004 250);
+
+  --border: oklch(0.95 0.015 235 / 13%);
+  --border-strong: oklch(0.95 0.015 235 / 25%);
+  --input: oklch(0.95 0.015 235 / 22%);
+  --ring: oklch(0.68 0.13 238);
+
+  --gradient-brand: linear-gradient(135deg, var(--brand-deep), var(--brand));
+  --gradient-text: linear-gradient(100deg, var(--foreground), var(--brand));
+  --shadow-card: 0 12px 32px -22px oklch(0.12 0.045 255 / 60%);
+  --shadow-brand: 0 10px 24px -14px color-mix(in oklab, var(--brand) 42%, transparent);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+  }
+
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@utility glass-panel {
+  background-color: color-mix(in oklab, var(--background) 92%, transparent);
+  backdrop-filter: blur(14px) saturate(120%);
+  border: 1px solid var(--border);
+}
+
+@utility page-atmosphere {
+  background-image: linear-gradient(
+    135deg,
+    oklch(0.275 0.07 248) 0%,
+    var(--background) 44%,
+    oklch(0.2 0.07 258) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+@utility text-gradient-brand {
+  background-image: var(--gradient-text);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+@utility brand-glow {
+  box-shadow: var(--shadow-brand);
+}
+
+@utility button-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: 1px solid color-mix(in oklab, var(--foreground) 14%, var(--primary));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--foreground) 12%, transparent),
+    0 3px 9px -5px oklch(0.08 0.04 255 / 70%);
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+
+  &:hover {
+    background-color: var(--brand-deep);
+    box-shadow: 0 6px 14px -7px oklch(0.08 0.04 255 / 75%);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    box-shadow: inset 0 2px 4px oklch(0.08 0.04 255 / 35%);
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.7;
+    transform: none;
+  }
+}
+
+@utility card-premium {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  &:hover {
+    border-color: color-mix(in oklab, var(--brand) 34%, var(--border));
+    box-shadow: 0 16px 34px -22px oklch(0.12 0.045 255 / 65%);
+    transform: translateY(-3px);
+  }
+
+  &:focus-within {
+    border-color: color-mix(in oklab, var(--brand) 34%, var(--border));
+  }
+}
+
+@utility image-frame {
+  position: relative;
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface);
+  box-shadow: 14px 14px 0 color-mix(in oklab, var(--brand-deep) 55%, transparent);
+
+  &::before {
+    position: absolute;
+    top: -1px;
+    left: 18px;
+    width: 56px;
+    height: 3px;
+    background-color: var(--brand);
+    content: "";
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0) scale(0.99);
+  filter: blur(3px);
+  transition:
+    opacity 620ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 620ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 620ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+@keyframes devly-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@utility animate-float {
+  animation: devly-float 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
