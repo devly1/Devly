@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/devly/Navbar";
 import { Hero } from "@/components/devly/Hero";
+import { Deliverables } from "@/components/devly/Deliverables";
 import { Trust } from "@/components/devly/Trust";
 import { Services } from "@/components/devly/Services";
 import { Portfolio } from "@/components/devly/Portfolio";
@@ -46,6 +47,7 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
+        <Deliverables />
         <Trust />
         <Services />
         <Portfolio />

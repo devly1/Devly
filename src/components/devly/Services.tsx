@@ -54,8 +54,8 @@ export function Services() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Lo que hacemos"
-          title="Una web útil empieza por entender tu negocio."
-          subtitle="Elegimos contigo lo que hace falta y dejamos fuera lo que no aporta."
+          title="Construimos solo lo que tu negocio necesita."
+          subtitle="Desde una página sencilla hasta una solución más completa. Definimos el alcance contigo antes de empezar."
         />
 
         <div className="mt-10 grid gap-x-10 sm:grid-cols-2">
