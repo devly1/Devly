@@ -58,14 +58,14 @@ export function Services() {
           subtitle="Desde una página sencilla hasta una solución más completa. Definimos el alcance contigo antes de empezar."
         />
 
-        <div className="mt-10 grid gap-x-10 sm:grid-cols-2">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-5">
           {SERVICES.map(({ title, description, features }, i) => (
             <Reveal key={title} delay={i * 90}>
-              <article className="group border-border grid h-full grid-cols-[2.25rem_1fr] gap-x-4 border-t py-6 transition-colors duration-200 hover:border-brand/45">
-                <span className="font-display text-brand/80 row-span-3 pt-1 text-sm font-semibold transition-transform duration-200 group-hover:translate-x-0.5">
+              <article className="card-premium group grid h-full grid-cols-[2.25rem_1fr] gap-x-4 p-5 sm:p-6">
+                <span className="font-display text-brand bg-brand/10 row-span-3 grid h-9 w-9 place-items-center rounded-lg text-xs font-bold transition-transform duration-200 group-hover:scale-105">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="font-display text-lg font-semibold transition-colors duration-200 group-hover:text-brand">
+                <h3 className="font-display text-lg font-semibold transition-colors duration-200 group-hover:text-brand sm:text-xl">
                   {title}
                 </h3>
                 <p className="text-muted-foreground mt-3 text-sm leading-relaxed">{description}</p>

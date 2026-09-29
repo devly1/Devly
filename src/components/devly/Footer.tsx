@@ -1,15 +1,16 @@
 import { Facebook, Instagram, Mail, MessageCircle } from "lucide-react";
-import logo from "@/assets/devly-logo.png.png";
+import logo from "@/assets/devly-logo-transparent.png";
 import { EMAIL, FACEBOOK_URL, INSTAGRAM_URL, whatsappLink } from "@/lib/devly";
 
 const NAV = [
   { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
   { label: "Proyectos", href: "#proyectos" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proceso", href: "#proceso" },
   { label: "Precios", href: "#precios" },
+  { label: "FAQ", href: "#faq" },
   { label: "Consejos", href: "#consejos" },
   { label: "Preparar proyecto", href: "#preparar" },
-  { label: "FAQ", href: "#faq" },
 ];
 
 const SERVICES = [
@@ -28,10 +29,10 @@ export function Footer() {
             <img
               src={logo}
               alt="Devly Web Studio"
-              width={472}
-              height={406}
+              width={398}
+              height={308}
               loading="lazy"
-              className="h-28 w-auto object-contain object-left"
+              className="h-24 w-auto object-contain object-left"
             />
             <p className="text-muted-foreground mt-4 max-w-sm text-sm leading-relaxed">
               Diseño y desarrollo web para negocios que quieren explicar mejor lo que hacen.
@@ -91,9 +92,17 @@ export function Footer() {
         </div>
 
         <div className="border-border mt-12 border-t pt-6">
-          <p className="text-muted-foreground/80 text-center text-xs">
-            © 2026 Devly. Todos los derechos reservados.
-          </p>
+          <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
+            <p className="text-muted-foreground/80 text-center text-xs">
+              © 2026 Devly. Todos los derechos reservados.
+            </p>
+            <a
+              href="/aviso-de-privacidad"
+              className="text-muted-foreground hover:text-brand text-xs transition-colors"
+            >
+              Aviso de privacidad
+            </a>
+          </div>
         </div>
       </div>
     </footer>

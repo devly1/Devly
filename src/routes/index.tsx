@@ -47,17 +47,17 @@ function Index() {
       <Navbar />
       <main>
         <Hero />
-        <Deliverables />
         <Trust />
-        <Services />
         <Portfolio />
+        <Services />
+        <Deliverables />
         <WhyDevly />
         <Process />
         <Pricing />
+        <FAQ />
         <AdviceGuides />
         <LaunchChecklist />
         <QuoteForm />
-        <FAQ />
         <FinalCTA />
       </main>
       <Footer />

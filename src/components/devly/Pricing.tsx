@@ -69,9 +69,12 @@ export function Pricing() {
               <article
                 className={cn(
                   "card-premium flex h-full flex-col p-7",
-                  plan.featured && "border-brand/55",
+                  plan.featured && "featured-plan",
                 )}
               >
+                {plan.featured ? (
+                  <span className="featured-plan-badge mb-5 self-start">Más elegido</span>
+                ) : null}
                 <h3 className="font-display text-sm font-bold tracking-[0.22em]">{plan.name}</h3>
                 <p className="mt-3 text-2xl font-bold sm:text-3xl">{plan.price}</p>
                 <p className="text-muted-foreground mt-3 text-sm leading-relaxed">{plan.ideal}</p>

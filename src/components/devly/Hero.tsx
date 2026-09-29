@@ -6,10 +6,10 @@ const TAGS = ["Páginas para negocios", "Tiendas en línea", "Sistemas a medida"
 
 export function Hero() {
   return (
-    <section id="inicio" className="pt-28 pb-16 sm:pt-36 sm:pb-24">
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-8">
+    <section id="inicio" className="hero-atmosphere pt-28 pb-16 sm:pt-36 sm:pb-24">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
         <div>
-          <Reveal className="text-brand inline-flex items-center gap-2 text-sm font-semibold">
+          <Reveal className="text-brand border-brand/25 bg-brand/10 inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold tracking-wide sm:text-sm">
             <MapPin className="h-4 w-4" aria-hidden />
             Hermosillo, Sonora · proyectos en todo México
           </Reveal>
@@ -17,9 +17,10 @@ export function Hero() {
           <Reveal
             as="h1"
             delay={80}
-            className="mt-6 max-w-[13ch] text-4xl leading-[1.08] font-bold sm:text-6xl"
+            variant="left"
+            className="mt-6 max-w-[13ch] text-4xl leading-[1.04] font-extrabold tracking-[-0.045em] sm:text-6xl lg:text-7xl"
           >
-            Una página clara, hecha para <span className="text-brand">tu negocio.</span>
+            Una página que hace avanzar <span className="animate-blue-text">tu negocio.</span>
           </Reveal>
 
           <Reveal
@@ -31,10 +32,25 @@ export function Hero() {
             clientes desde su celular.
           </Reveal>
 
-          <Reveal delay={240} className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Reveal delay={240} className="mt-6 flex flex-wrap gap-2" as="ul">
+            {TAGS.map((tag) => (
+              <li
+                key={tag}
+                className="border-border bg-surface/70 text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium sm:text-sm"
+              >
+                <span
+                  className="bg-brand h-1.5 w-1.5 rounded-full shadow-[0_0_10px_var(--brand)]"
+                  aria-hidden
+                />
+                {tag}
+              </li>
+            ))}
+          </Reveal>
+
+          <Reveal delay={320} className="mt-7 flex flex-col gap-3 sm:flex-row">
             <a
               href="#cotizar"
-              className="button-primary group inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 text-base font-semibold"
+              className="button-primary hero-cta group inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 text-base font-semibold"
             >
               Cuéntame qué necesitas
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -46,29 +62,17 @@ export function Hero() {
               Ver conceptos
             </a>
           </Reveal>
-
-          <Reveal
-            delay={320}
-            className="border-border mt-8 flex flex-wrap gap-x-5 gap-y-2 border-t pt-5"
-            as="ul"
-          >
-            {TAGS.map((tag) => (
-              <li key={tag} className="text-muted-foreground text-sm">
-                {tag}
-              </li>
-            ))}
-          </Reveal>
         </div>
 
-        <Reveal delay={200} className="relative">
-          <div className="image-frame relative p-2 sm:p-3">
+        <Reveal delay={200} variant="right" className="relative">
+          <div className="image-frame animate-float group relative rounded-2xl p-2 sm:p-3">
             <img
               src={heroMockup}
               alt="Vista de una página web adaptada a computadora y celular"
               width={1408}
               height={1104}
               fetchPriority="high"
-              className="aspect-[1.2] w-full object-cover object-center"
+              className="aspect-[1.2] w-full rounded-xl object-cover object-center transition-[filter,transform] duration-700 ease-out group-hover:scale-[1.015] group-hover:saturate-125"
             />
           </div>
           <p className="text-muted-foreground mt-5 max-w-md border-l-2 border-brand/60 pl-3 text-sm leading-relaxed">

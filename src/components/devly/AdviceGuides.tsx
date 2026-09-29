@@ -37,15 +37,19 @@ export function AdviceGuides() {
 
         <div className="mt-12 grid gap-x-8 gap-y-10 md:grid-cols-3">
           {GUIDES.map((guide, index) => (
-            <Reveal as="article" key={guide.title} delay={index * 90}>
-              <div className="border-brand mb-5 flex items-center gap-3 border-t pt-4">
-                <span className="text-brand text-xs font-bold uppercase">{guide.category}</span>
+            <Reveal as="article" key={guide.title} delay={index * 90} className="h-full">
+              <div className="card-premium h-full p-6">
+                <span className="text-brand bg-brand/10 inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide">
+                  {guide.category}
+                </span>
+                <h3 className="font-display mt-5 text-xl leading-snug font-bold">{guide.title}</h3>
+                <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+                  {guide.summary}
+                </p>
+                <p className="text-foreground/85 border-brand/50 mt-4 border-l-2 pl-3 text-sm leading-relaxed">
+                  {guide.tip}
+                </p>
               </div>
-              <h3 className="font-display text-xl leading-snug font-bold">{guide.title}</h3>
-              <p className="text-muted-foreground mt-3 text-sm leading-relaxed">{guide.summary}</p>
-              <p className="text-foreground/85 mt-4 border-l border-brand/60 pl-3 text-sm leading-relaxed">
-                {guide.tip}
-              </p>
             </Reveal>
           ))}
         </div>

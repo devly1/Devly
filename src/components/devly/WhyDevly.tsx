@@ -32,9 +32,9 @@ export function WhyDevly() {
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2">
           {BENEFITS.map(({ title, description }, i) => (
-            <Reveal key={title} delay={i * 90}>
-              <article className="border-border grid h-full min-w-0 grid-cols-[2.25rem_1fr] gap-x-4 border-t py-6">
-                <span className="font-display text-brand/80 pt-0.5 text-sm font-semibold">
+            <Reveal key={title} delay={i * 90} className="h-full">
+              <article className="card-premium grid h-full min-w-0 grid-cols-[2.25rem_1fr] gap-x-4 p-5 sm:p-6">
+                <span className="font-display text-brand bg-brand/10 grid h-9 w-9 place-items-center rounded-lg text-xs font-bold">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="min-w-0">

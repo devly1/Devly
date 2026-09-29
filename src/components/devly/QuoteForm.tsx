@@ -43,6 +43,8 @@ export function QuoteForm() {
     if (!get("tipo")) next["tipo"] = "Selecciona el tipo de proyecto.";
     if (!get("presupuesto")) next["presupuesto"] = "Selecciona un presupuesto aproximado.";
     if (get("mensaje").length < 10) next["mensaje"] = "Cuéntanos un poco más de tu proyecto.";
+    if (data.get("privacidad") !== "on")
+      next["privacidad"] = "Debes aceptar el aviso para enviar tu solicitud.";
 
     setErrors(next);
     if (Object.keys(next).length > 0) return;
@@ -181,6 +183,31 @@ export function QuoteForm() {
                 />
               </Field>
 
+              <div>
+                <label className="text-muted-foreground flex items-start gap-3 text-sm leading-relaxed">
+                  <input
+                    name="privacidad"
+                    type="checkbox"
+                    className="border-input accent-brand mt-1 h-4 w-4 shrink-0 rounded"
+                  />
+                  <span>
+                    Leí y acepto el{" "}
+                    <a
+                      href="/aviso-de-privacidad"
+                      className="text-brand underline underline-offset-4"
+                    >
+                      aviso de privacidad
+                    </a>
+                    , y autorizo el uso de mis datos para responder a esta consulta.
+                  </span>
+                </label>
+                {errors["privacidad"] ? (
+                  <p role="alert" className="text-destructive mt-2 text-xs">
+                    {errors["privacidad"]}
+                  </p>
+                ) : null}
+              </div>
+
               {submitError ? (
                 <p role="alert" className="text-destructive text-sm">
                   {submitError}
@@ -195,9 +222,6 @@ export function QuoteForm() {
                 <Send className="h-4 w-4" aria-hidden />
                 {sending ? "Enviando..." : "Solicitar cotización"}
               </button>
-              <p className="text-muted-foreground text-center text-xs">
-                Usaremos tus datos únicamente para responder a esta consulta.
-              </p>
             </form>
           )}
         </Reveal>

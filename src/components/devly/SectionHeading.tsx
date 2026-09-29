@@ -14,16 +14,27 @@ export function SectionHeading({ eyebrow, title, subtitle, className }: Props) {
       {eyebrow ? (
         <Reveal
           as="p"
+          variant="left"
           className="text-brand border-brand border-l-2 pl-3 text-xs font-bold uppercase"
         >
           {eyebrow}
         </Reveal>
       ) : null}
-      <Reveal as="h2" delay={60} className="mt-4 text-3xl leading-tight font-bold sm:text-4xl">
+      <Reveal
+        as="h2"
+        delay={60}
+        variant="zoom"
+        className="section-title mt-4 text-3xl leading-tight font-bold sm:text-4xl"
+      >
         {title}
       </Reveal>
       {subtitle ? (
-        <Reveal as="p" delay={120} className="text-muted-foreground mt-4 text-base sm:text-lg">
+        <Reveal
+          as="p"
+          delay={120}
+          variant="up"
+          className="text-muted-foreground mt-4 text-base sm:text-lg"
+        >
           {subtitle}
         </Reveal>
       ) : null}

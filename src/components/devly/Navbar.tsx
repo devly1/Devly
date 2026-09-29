@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/devly-logo.png.png";
+import logo from "@/assets/devly-logo-transparent.png";
 import { NAV_LINKS } from "@/lib/devly";
 import { cn } from "@/lib/utils";
 
@@ -28,15 +28,15 @@ export function Navbar() {
       >
         <a
           href="#inicio"
-          className="flex min-w-0 items-center"
+          className="brand-mark flex min-w-0 items-center"
           aria-label="Devly Web Studio, inicio"
         >
           <img
             src={logo}
             alt="Devly Web Studio"
-            width={472}
-            height={406}
-            className="h-16 w-auto shrink-0 rounded-sm object-contain sm:h-20"
+            width={398}
+            height={308}
+            className="h-14 w-auto shrink-0 object-contain sm:h-[4.5rem]"
           />
         </a>
 
@@ -45,7 +45,7 @@ export function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-muted-foreground hover:text-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                className="nav-link text-muted-foreground rounded-md px-3 py-2 text-sm font-medium"
               >
                 {link.label}
               </a>

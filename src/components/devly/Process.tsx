@@ -42,9 +42,10 @@ export function Process() {
                 as="li"
                 key={step.number}
                 delay={i * 110}
-                className="relative min-w-0 pl-16 lg:pl-0"
+                variant={i % 2 === 0 ? "up" : "zoom"}
+                className="card-premium relative min-w-0 p-4 pl-16 lg:min-h-56 lg:p-5 lg:pt-8"
               >
-                <span className="border-brand/50 bg-background text-brand font-display absolute left-0 grid h-11 w-11 place-items-center rounded-full border text-sm font-bold lg:static lg:mb-6">
+                <span className="border-brand/50 bg-background text-brand font-display absolute top-4 left-4 grid h-11 w-11 place-items-center rounded-full border text-sm font-bold shadow-[0_0_24px_-8px_var(--brand)] lg:static lg:mb-6">
                   {step.number}
                 </span>
                 <h3 className="text-base font-semibold">{step.title}</h3>

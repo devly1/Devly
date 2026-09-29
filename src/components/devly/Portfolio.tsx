@@ -78,7 +78,7 @@ export function Portfolio() {
           subtitle="Son conceptos de muestra, no trabajos de clientes. Cada proyecto real empieza desde cero contigo."
         />
 
-        <Reveal className="border-border mt-10 flex flex-wrap gap-x-5 border-b" as="div">
+        <Reveal className="border-border mt-10 flex flex-wrap gap-2 border-b pb-3" as="div">
           {FILTERS.map((f) => (
             <button
               key={f}
@@ -86,10 +86,10 @@ export function Portfolio() {
               onClick={() => setFilter(f)}
               aria-pressed={filter === f}
               className={cn(
-                "border-b-2 px-1 py-3 text-sm font-medium transition-colors",
+                "filter-pill rounded-full border px-3.5 py-2 text-sm font-medium transition-colors",
                 filter === f
-                  ? "border-brand text-brand"
-                  : "border-transparent text-muted-foreground hover:text-foreground hover:border-border-strong",
+                  ? "filter-pill-active"
+                  : "border-border bg-background/45 text-muted-foreground hover:border-brand/45 hover:text-foreground",
               )}
             >
               {f}
@@ -99,17 +99,18 @@ export function Portfolio() {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((project, i) => (
-            <Reveal key={project.name} delay={i * 80}>
+            <Reveal key={project.name} delay={i * 100} variant="zoom">
               <article className="card-premium group h-full overflow-hidden">
-                <div className="relative overflow-hidden">
+                <div className="portfolio-media relative overflow-hidden">
                   <img
                     src={project.image}
                     alt={`Mockup del proyecto: ${project.name}`}
                     loading="lazy"
                     width={1200}
                     height={912}
-                    className="aspect-[4/3] w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.035]"
+                    className="aspect-[4/3] w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.07]"
                   />
+                  <span className="portfolio-media-label">Concepto visual</span>
                 </div>
                 <div className="p-5">
                   <p className="text-brand text-xs font-semibold tracking-[0.18em] uppercase">
