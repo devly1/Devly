@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
 import { EMAIL, whatsappLink } from "@/lib/devly";
+
+const GA_MEASUREMENT_ID = import.meta.env["VITE_GA_MEASUREMENT_ID"];
+const ANALYTICS_CONSENT_KEY = "devly-analytics-consent";
 
 export const Route = createFileRoute("/aviso-de-privacidad")({
   head: () => ({
@@ -79,6 +83,29 @@ function PrivacyNotice() {
             </p>
           </section>
 
+          {GA_MEASUREMENT_ID ? (
+            <section>
+              <h2 className="text-lg font-bold">Medición de visitas</h2>
+              <p className="text-muted-foreground mt-2">
+                Si aceptas las analíticas en el aviso de preferencias, este sitio usa Google
+                Analytics para conocer de forma agregada cómo se utiliza y mejorar su contenido.
+                Puede procesar datos de navegación, páginas visitadas, interacciones e información
+                técnica del dispositivo y navegador. La etiqueta de Google Analytics no se carga
+                antes de tu consentimiento. Google puede procesar estos datos conforme a su{" "}
+                <a
+                  className="text-brand underline underline-offset-4"
+                  href="https://policies.google.com/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  política de privacidad
+                </a>
+                .
+              </p>
+              <AnalyticsPreferenceButton />
+            </section>
+          ) : null}
+
           <section>
             <h2 className="text-lg font-bold">Acceso, corrección o eliminación</h2>
             <p className="text-muted-foreground mt-2">
@@ -115,6 +142,28 @@ function PrivacyNotice() {
           </p>
         </div>
       </main>
+    </div>
+  );
+}
+
+function AnalyticsPreferenceButton() {
+  const [updated, setUpdated] = useState(false);
+
+  function reopenPreferences() {
+    window.localStorage.removeItem(ANALYTICS_CONSENT_KEY);
+    setUpdated(true);
+    window.setTimeout(() => window.location.reload(), 700);
+  }
+
+  return (
+    <div className="mt-4">
+      <button
+        type="button"
+        onClick={reopenPreferences}
+        className="border-border-strong hover:bg-surface-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors"
+      >
+        {updated ? "Abriendo preferencias…" : "Cambiar o retirar consentimiento de analíticas"}
+      </button>
     </div>
   );
 }

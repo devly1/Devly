@@ -34,3 +34,7 @@ The quote form sends submissions through EmailJS to the recipient configured in 
 3. Restart the dev server after changing environment variables. In EmailJS, restrict allowed origins to the website's domains and set the template's Reply To field to `{{correo}}`.
 
 EmailJS's public key is intended for browser use. Do not put Gmail passwords or private OAuth secrets in the frontend. Set these same public EmailJS values in the production hosting environment before deploying.
+
+## Google Analytics
+
+Create a GA4 web data stream for the production domain and copy its Measurement ID (`G-...`) into `VITE_GA_MEASUREMENT_ID`. Set it in the production hosting environment before building/deploying. Analytics is not loaded until a visitor accepts the consent notice; rejected consent is saved locally, and the visitor can change the choice from the privacy notice.
