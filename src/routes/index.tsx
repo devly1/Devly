@@ -1,18 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/devly/Navbar";
 import { Hero } from "@/components/devly/Hero";
-import { Deliverables } from "@/components/devly/Deliverables";
 import { Trust } from "@/components/devly/Trust";
-import { Services } from "@/components/devly/Services";
 import { Portfolio } from "@/components/devly/Portfolio";
 import { WhyDevly } from "@/components/devly/WhyDevly";
 import { Process } from "@/components/devly/Process";
 import { Pricing } from "@/components/devly/Pricing";
-import { AdviceGuides } from "@/components/devly/AdviceGuides";
-import { LaunchChecklist } from "@/components/devly/LaunchChecklist";
 import { QuoteForm } from "@/components/devly/QuoteForm";
 import { FAQ } from "@/components/devly/FAQ";
-import { FinalCTA } from "@/components/devly/FinalCTA";
 import { Footer } from "@/components/devly/Footer";
 import { WhatsAppButton } from "@/components/devly/WhatsAppButton";
 
@@ -43,22 +38,17 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="page-atmosphere bg-background min-h-screen">
+    <div className="relative min-h-screen">
       <Navbar />
       <main>
         <Hero />
-        <Deliverables />
         <Trust />
-        <Services />
         <Portfolio />
+        <Pricing />
         <WhyDevly />
         <Process />
-        <Pricing />
-        <AdviceGuides />
-        <LaunchChecklist />
-        <QuoteForm />
         <FAQ />
-        <FinalCTA />
+        <QuoteForm />
       </main>
       <Footer />
       <WhatsAppButton />

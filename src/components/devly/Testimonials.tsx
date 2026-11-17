@@ -13,8 +13,7 @@ const TESTIMONIALS = [
     author: "Cliente Devly",
   },
   {
-    quote:
-      "El proceso fue claro de principio a fin y la página se ve increíble en el celular.",
+    quote: "El proceso fue claro de principio a fin y la página se ve increíble en el celular.",
     author: "Cliente Devly",
   },
   {

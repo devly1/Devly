@@ -1,110 +1,135 @@
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
-import { cn } from "@/lib/utils";
 
 const PLANS = [
   {
-    name: "LANDING",
-    price: "Desde $2,500 MXN",
-    ideal: "Para presentar tus servicios y hacer fácil que te contacten.",
+    name: "Landing page",
+    price: "$2,500",
+    ideal: "Una sola página para presentar tu negocio y que te contacten fácil.",
     features: [
       "Diseño personalizado",
-      "Una página",
-      "Responsive",
+      "Adaptada a celular",
       "Botón de WhatsApp",
-      "Galería",
-      "Información del negocio",
-      "Formulario/contacto",
-      "Publicación",
+      "Galería de fotos",
+      "Formulario de contacto",
+      "Publicación incluida",
     ],
-    cta: "Cotizar landing",
     featured: false,
   },
   {
-    name: "EMPRESARIAL",
-    price: "Desde $4,500 MXN",
-    ideal: "Para explicar con más detalle lo que hace tu negocio.",
+    name: "Sitio empresarial",
+    price: "$4,500",
+    ideal: "Varias secciones para explicar con detalle lo que haces.",
     features: [
       "Todo lo de Landing",
-      "Más secciones",
+      "Más secciones y páginas",
       "Google Maps",
       "SEO básico",
       "Galería avanzada",
-      "Formularios",
       "Integraciones",
     ],
-    cta: "Cotizar sitio",
     featured: true,
   },
   {
-    name: "E-COMMERCE",
-    price: "Desde $7,000 MXN",
-    ideal: "Para negocios que quieren vender online.",
+    name: "Tienda en línea",
+    price: "$7,000",
+    ideal: "Para vender productos y recibir pedidos por internet.",
     features: [
-      "Catálogo",
-      "Productos",
-      "Carrito",
-      "Pedidos",
+      "Catálogo de productos",
+      "Carrito y pedidos",
       "Diseño personalizado",
       "Configuración inicial",
     ],
-    cta: "Platicar sobre una tienda",
     featured: false,
   },
 ];
 
 export function Pricing() {
   return (
-    <section id="precios" className="py-20 sm:py-28">
+    <section id="servicios" className="bg-background relative py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Inversión inicial"
-          title="Una idea clara de cuánto cuesta empezar."
+          size="lg"
+          align="center"
+          eyebrow="Servicios y precios"
+          title="Elige por dónde empezar."
+          subtitle="Precios de referencia. Te confirmamos el costo final antes de comenzar, según el contenido y las funciones."
         />
 
-        <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-3">
+        <div className="mt-14 grid items-start gap-5 lg:grid-cols-3">
           {PLANS.map((plan, i) => (
             <Reveal key={plan.name} delay={i * 100} className="h-full">
               <article
                 className={cn(
-                  "card-premium flex h-full flex-col p-7",
-                  plan.featured && "border-brand/55",
+                  "relative flex h-full flex-col rounded-xl border p-7 transition-colors duration-300",
+                  plan.featured
+                    ? "border-primary bg-card"
+                    : "bg-deep border-white/10 hover:border-white/25",
                 )}
               >
-                <h3 className="font-display text-sm font-bold tracking-[0.22em]">{plan.name}</h3>
-                <p className="mt-3 text-2xl font-bold sm:text-3xl">{plan.price}</p>
-                <p className="text-muted-foreground mt-3 text-sm leading-relaxed">{plan.ideal}</p>
-                <ul className="mt-6 space-y-2.5">
+                {plan.featured ? (
+                  <span className="bg-primary absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-semibold text-white">
+                    El más pedido
+                  </span>
+                ) : null}
+
+                <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
+                <p className="mt-1 min-h-[2.5rem] text-sm leading-relaxed text-white/60">
+                  {plan.ideal}
+                </p>
+
+                <div className="mt-6 flex items-baseline gap-1.5 whitespace-nowrap">
+                  <span className="text-sm text-white/50">Desde</span>
+                  <span className="text-4xl font-extrabold tracking-tight text-white">
+                    {plan.price}
+                  </span>
+                  <span className="text-sm font-semibold text-white/50">MXN</span>
+                </div>
+
+                <ul className="mt-6 flex-1 space-y-3 border-t border-white/10 pt-6">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm">
+                    <li key={f} className="flex items-start gap-3 text-sm text-white/80">
                       <Check className="text-brand mt-0.5 h-4 w-4 shrink-0" aria-hidden />
-                      <span className="text-foreground/85">{f}</span>
+                      {f}
                     </li>
                   ))}
                 </ul>
+
                 <a
                   href="#cotizar"
                   className={cn(
-                    "mt-auto inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-semibold transition-colors",
+                    "mt-8 inline-flex w-full items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors",
                     plan.featured
                       ? "button-primary"
-                      : "border-border-strong hover:bg-surface-2 border",
+                      : "border border-white/15 text-white hover:bg-white/5",
                   )}
                 >
-                  {plan.cta}
+                  Cotizar {plan.name.toLowerCase()}
                 </a>
               </article>
             </Reveal>
           ))}
         </div>
 
-        <Reveal
-          as="p"
-          className="text-muted-foreground mx-auto mt-10 max-w-2xl text-center text-sm"
-        >
-          El precio final depende del contenido y las funciones. Te confirmamos el alcance y el
-          costo antes de comenzar.
+        {/* Soluciones a medida (antes una tarjeta más en Servicios) */}
+        <Reveal delay={150} className="mt-5">
+          <a
+            href="#cotizar"
+            className="group bg-deep flex flex-col gap-4 rounded-xl border border-white/10 p-7 transition-colors duration-300 hover:border-white/25 md:flex-row md:items-center md:justify-between"
+          >
+            <div>
+              <h3 className="text-lg font-semibold text-white">¿Necesitas algo a la medida?</h3>
+              <p className="mt-1 text-sm text-white/60">
+                Sistemas personalizados, automatizaciones e integraciones para tu negocio.
+              </p>
+            </div>
+            <span className="text-brand inline-flex shrink-0 items-center gap-2 text-sm font-semibold">
+              Platiquemos tu idea
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+          </a>
         </Reveal>
       </div>
     </section>

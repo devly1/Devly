@@ -1,4 +1,11 @@
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ElementType,
+  type ReactNode,
+} from "react";
 import { cn } from "@/lib/utils";
 
 type RevealProps = {
@@ -6,16 +13,31 @@ type RevealProps = {
   className?: string;
   delay?: number;
   as?: ElementType;
+  /** Dirección de la entrada: hacia arriba (por defecto), desde la izquierda/derecha o con zoom. */
+  variant?: "up" | "left" | "right" | "scale";
+  style?: CSSProperties;
 };
 
-/** Anima el contenido con un fade + slide-up suave al entrar en el viewport. */
-export function Reveal({ children, className, delay = 0, as: Tag = "div" }: RevealProps) {
+/** Anima el contenido al entrar en el viewport (fade + desplazamiento + desenfoque). */
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+  as: Tag = "div",
+  variant = "up",
+  style,
+}: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,7 +56,8 @@ export function Reveal({ children, className, delay = 0, as: Tag = "div" }: Reve
   return (
     <Tag
       ref={ref as never}
-      style={{ transitionDelay: `${delay}ms` }}
+      data-variant={variant === "up" ? undefined : variant}
+      style={{ transitionDelay: `${delay}ms`, ...style }}
       className={cn("reveal", visible && "reveal-in", className)}
     >
       {children}

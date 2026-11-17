@@ -6,24 +6,46 @@ type Props = {
   title: string;
   subtitle?: string;
   className?: string;
+  /** "center" para secciones que lo necesiten; por defecto alineado a la izquierda. */
+  align?: "left" | "center";
+  /** Título más grande para las secciones principales. */
+  size?: "md" | "lg";
 };
 
-export function SectionHeading({ eyebrow, title, subtitle, className }: Props) {
+export function SectionHeading({
+  eyebrow,
+  title,
+  subtitle,
+  className,
+  align = "left",
+  size = "md",
+}: Props) {
   return (
-    <div className={cn("mx-0 max-w-3xl text-left", className)}>
+    <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow ? (
-        <Reveal
-          as="p"
-          className="text-brand border-brand border-l-2 pl-3 text-xs font-bold uppercase"
-        >
+        <Reveal as="p" className="text-brand text-sm font-semibold">
           {eyebrow}
         </Reveal>
       ) : null}
-      <Reveal as="h2" delay={60} className="mt-4 text-3xl leading-tight font-bold sm:text-4xl">
+      <Reveal
+        as="h2"
+        delay={60}
+        className={cn(
+          "mt-3 leading-[1.1] font-bold tracking-tight text-white",
+          size === "lg" ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl",
+        )}
+      >
         {title}
       </Reveal>
       {subtitle ? (
-        <Reveal as="p" delay={120} className="text-muted-foreground mt-4 text-base sm:text-lg">
+        <Reveal
+          as="p"
+          delay={120}
+          className={cn(
+            "mt-4 text-base leading-relaxed text-white/65 sm:text-lg",
+            align === "center" && "mx-auto max-w-2xl",
+          )}
+        >
           {subtitle}
         </Reveal>
       ) : null}

@@ -1,5 +1,4 @@
 import { Reveal } from "./Reveal";
-import { SectionHeading } from "./SectionHeading";
 
 const BENEFITS = [
   {
@@ -21,32 +20,51 @@ const BENEFITS = [
   },
 ];
 
+/** Formato editorial: frase grande a la izquierda (fija al hacer scroll) y lista a la derecha. */
 export function WhyDevly() {
   return (
-    <section id="por-que-devly" className="py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="La forma de trabajar"
-          title="Tu negocio no cabe en una plantilla."
-        />
+    <section id="por-que-devly" className="bg-deep relative py-20 sm:py-28">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-8">
+        <div className="lg:sticky lg:top-32 lg:self-start">
+          <Reveal as="p" className="text-brand text-sm font-semibold">
+            La forma de trabajar
+          </Reveal>
+          <Reveal
+            as="h2"
+            delay={60}
+            className="mt-3 text-4xl leading-[1.1] font-bold tracking-tight text-white sm:text-5xl"
+          >
+            Tu negocio no cabe en una plantilla.
+          </Reveal>
+          <Reveal
+            as="p"
+            delay={120}
+            className="mt-5 max-w-md text-lg leading-relaxed text-white/65"
+          >
+            Por eso cada página empieza con una conversación, no con un diseño prefabricado.
+          </Reveal>
+        </div>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2">
+        <ol className="border-t border-white/10">
           {BENEFITS.map(({ title, description }, i) => (
-            <Reveal key={title} delay={i * 90}>
-              <article className="border-border grid h-full min-w-0 grid-cols-[2.25rem_1fr] gap-x-4 border-t py-6">
-                <span className="font-display text-brand/80 pt-0.5 text-sm font-semibold">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="min-w-0">
-                  <h3 className="text-base font-semibold">{title}</h3>
-                  <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-                    {description}
-                  </p>
-                </div>
-              </article>
+            <Reveal
+              as="li"
+              key={title}
+              delay={i * 90}
+              className="group grid grid-cols-[3rem_1fr] gap-x-4 border-b border-white/10 py-8"
+            >
+              <span className="font-display text-brand pt-1 text-sm font-bold">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="group-hover:text-brand text-xl font-semibold text-white transition-colors duration-300">
+                  {title}
+                </h3>
+                <p className="mt-2 leading-relaxed text-white/60">{description}</p>
+              </div>
             </Reveal>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

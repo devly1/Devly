@@ -19,10 +19,8 @@ export function whatsappLink(message: string = WHATSAPP_MESSAGE) {
 }
 
 export const NAV_LINKS = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
   { label: "Proyectos", href: "#proyectos" },
+  { label: "Servicios", href: "#servicios" },
   { label: "Proceso", href: "#proceso" },
-  { label: "Precios", href: "#precios" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Preguntas", href: "#faq" },
 ];

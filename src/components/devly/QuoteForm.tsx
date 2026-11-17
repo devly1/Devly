@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { CheckCircle2, Send } from "lucide-react";
+import { CheckCircle2, Mail, MessageCircle, Send } from "lucide-react";
+import { EMAIL, whatsappLink } from "@/lib/devly";
+import { LaunchChecklist } from "./LaunchChecklist";
 import emailjs from "@emailjs/browser";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
@@ -17,7 +19,7 @@ const BUDGETS = ["Menos de $2,500", "$2,500 - $5,000", "$5,000 - $10,000", "Más
 type Errors = Record<string, string>;
 
 const fieldClass =
-  "w-full rounded-md border border-input bg-card px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 transition-colors focus:border-brand focus:outline-none";
+  "w-full rounded-lg border border-white/10 bg-deep px-4 py-3 text-sm text-foreground placeholder:text-white/35 transition-all duration-300 hover:border-white/20 focus:border-brand/60 focus:outline-none [&>option]:bg-slate-900";
 
 export function QuoteForm() {
   const [sent, setSent] = useState(false);
@@ -79,18 +81,44 @@ export function QuoteForm() {
   }
 
   return (
-    <section id="cotizar" className="bg-surface/30 border-border border-y py-20 sm:py-28">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading
-          eyebrow="Cotización"
-          title="Cuéntanos qué necesitas"
-          subtitle="Describe lo que haces y qué te gustaría resolver. Revisaremos tu mensaje y te contactaremos para conversar sobre el alcance."
-        />
+    <section id="cotizar" className="relative bg-background py-20 sm:py-28">
+      <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-x-16 lg:gap-y-10 lg:px-8">
+        {/* Columna izquierda: mensaje, contacto directo y checklist */}
+        <div>
+          <SectionHeading
+            size="lg"
+            eyebrow="Cotización"
+            title="Hablemos de tu página."
+            subtitle="Cuéntanos qué haces y qué te gustaría resolver. Te respondemos personalmente para platicar el alcance."
+          />
 
-        <Reveal delay={120} className="mt-12">
+          <Reveal delay={150} className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-sm font-semibold text-[#0b2e17] transition-colors hover:bg-[#2ee370]"
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden />
+              Escribir por WhatsApp
+            </a>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/5"
+            >
+              <Mail className="h-4 w-4" aria-hidden />
+              Enviar correo
+            </a>
+          </Reveal>
+        </div>
+
+        <Reveal delay={120} className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
           {sent ? (
-            <div className="card-premium p-8 text-center sm:p-12">
-              <CheckCircle2 className="text-brand mx-auto h-12 w-12" aria-hidden />
+            <div className="bg-card rounded-xl border border-white/10 p-8 text-center sm:p-12">
+              <span className="relative mx-auto grid h-16 w-16 place-items-center">
+                <span className="ping-soft absolute inset-0 rounded-full bg-brand/10" />
+                <CheckCircle2 className="relative h-12 w-12 text-brand" aria-hidden />
+              </span>
               <h3 className="mt-5 text-2xl font-bold">¡Solicitud enviada!</h3>
               <p className="text-muted-foreground mx-auto mt-3 max-w-md text-sm leading-relaxed">
                 Gracias por contactar a Devly. Revisaremos tu proyecto y nos pondremos en contacto
@@ -99,13 +127,17 @@ export function QuoteForm() {
               <button
                 type="button"
                 onClick={() => setSent(false)}
-                className="border-border-strong hover:bg-surface-2 mt-7 rounded-md border px-6 py-2.5 text-sm font-semibold transition-colors"
+                className="mt-7 border-white/20 hover:bg-white/10 rounded-md border px-6 py-2.5 text-sm font-semibold transition-colors"
               >
                 Enviar otra solicitud
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate className="card-premium grid gap-5 p-6 sm:p-9">
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              className="bg-card grid gap-5 rounded-xl border border-white/10 p-6 sm:p-8"
+            >
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Nombre" name="nombre" error={errors["nombre"]}>
                   <input id="nombre" name="nombre" className={fieldClass} placeholder="Tu nombre" />
@@ -190,9 +222,12 @@ export function QuoteForm() {
               <button
                 type="submit"
                 disabled={sending}
-                className="button-primary inline-flex items-center justify-center gap-2 rounded-md px-7 py-3.5 text-base font-semibold"
+                className="button-primary group inline-flex items-center justify-center gap-2 rounded-lg px-7 py-3.5 text-base font-semibold"
               >
-                <Send className="h-4 w-4" aria-hidden />
+                <Send
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  aria-hidden
+                />
                 {sending ? "Enviando..." : "Solicitar cotización"}
               </button>
               <p className="text-muted-foreground text-center text-xs">
@@ -200,6 +235,10 @@ export function QuoteForm() {
               </p>
             </form>
           )}
+        </Reveal>
+
+        <Reveal delay={220} className="lg:col-start-1 lg:row-start-2">
+          <LaunchChecklist />
         </Reveal>
       </div>
     </section>
