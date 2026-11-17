@@ -89,10 +89,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-border mt-12 border-t pt-6">
-          <p className="text-muted-foreground/80 text-center text-xs">
+        <div className="border-border mt-12 flex flex-col items-center justify-between gap-3 border-t pt-6 sm:flex-row">
+          <p className="text-muted-foreground/80 text-xs">
             © 2026 Devly. Todos los derechos reservados.
           </p>
+          <a
+            href="/aviso-de-privacidad"
+            className="link-underline text-muted-foreground text-xs hover:text-white"
+          >
+            Aviso de privacidad
+          </a>
         </div>
       </div>
     </footer>

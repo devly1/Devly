@@ -21,7 +21,7 @@ export function WhatsAppButton() {
       rel="noopener noreferrer"
       aria-label="Escríbenos por WhatsApp"
       className={cn(
-        "fixed right-4 bottom-4 z-50 flex items-center gap-2 rounded-full bg-[#25D366] py-3 pr-5 pl-4 text-sm font-semibold text-[#0b2e17] transition-all duration-300 hover:bg-[#2ee370] sm:right-6 sm:bottom-6",
+        "fixed bottom-4 left-4 z-50 flex items-center gap-2 rounded-full bg-[#25D366] py-3 pr-5 pl-4 text-sm font-semibold text-[#0b2e17] transition-all duration-300 hover:bg-[#2ee370] sm:bottom-6 sm:left-6",
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0",
       )}
     >
